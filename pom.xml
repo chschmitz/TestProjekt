@@ -28,6 +28,13 @@
   </dependencies>
 
   <build>
+    <extensions>
+      <extension>
+         <groupId>org.apache.maven.wagon</groupId>
+	 <artifactId>wagon-webdav-jackrabbit</artifactId>
+	 <version>1.0-beta-7</version>
+      </extension>
+    </extensions>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -72,4 +79,10 @@
       </plugins>
     </pluginManagement>
   </build>
+  <distributionManagement>
+    <site>
+      <id>webdavserver</id>
+      <url>dav:http://127.0.0.1:8800/sites/</url>
+    </site>
+  </distributionManagement>
 </project>
