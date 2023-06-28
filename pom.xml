@@ -1,38 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>de.hstr</groupId>
-  <artifactId>testprojekt</artifactId>
-  <version>1.0-SNAPSHOT</version>
-
-  <name>testprojekt</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
-
+  <groupId>net.oneandone.maven.plugins</groupId>
+  <artifactId>cycles-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+  <version>1.1.0-SNAPSHOT</version>
+  <name>Maven Cycles Plugin</name>
+  <description>
+    Analyzes package cycles.
+  </description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
+  <developers>
+    <developer>
+      <id>chschmitz</id>
+      <name>Christoph Schmitz</name>
+      <email>christoph.schmitz@1und1.de</email>
+      <organization>1und1 | MediaFactory </organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jgrote</id>
+      <name>Jonas Grote</name>
+      <email>jonas.grote@1und1.de</email>
+      <organization>1und1 | MediaFactory </organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
   <build>
-    <extensions>
+ <extensions>
       <extension>
          <groupId>org.apache.maven.wagon</groupId>
-	 <artifactId>wagon-webdav-jackrabbit</artifactId>
-	 <version>1.0-beta-7</version>
+         <artifactId>wagon-webdav-jackrabbit</artifactId>
+         <version>1.0-beta-7</version>
       </extension>
     </extensions>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -78,7 +83,99 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.plexus</groupId>
+	<artifactId>plexus-maven-plugin</artifactId>
+	<version>1.3.8</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>descriptor</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <artifactSet>
+                <includes>
+                  <include>org.bithill:classycle</include>
+                </includes>
+              </artifactSet>
+              <relocations>
+                <relocation>
+                  <pattern>classycle</pattern>
+                  <shadedPattern>net.oneandone.shaded.classycle</shadedPattern>
+                </relocation>
+              </relocations>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bithill</groupId>
+      <artifactId>classycle</artifactId>
+      <version>1.4.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>12.0</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.jung</groupId>
+      <artifactId>jung-graph-impl</artifactId>
+      <version>2.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.jung</groupId>
+      <artifactId>jung-algorithms</artifactId>
+      <version>2.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.1</version>
+    </dependency>
+  </dependencies>
   <distributionManagement>
     <site>
       <id>webdavserver</id>
