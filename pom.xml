@@ -82,7 +82,7 @@
   <distributionManagement>
     <site>
       <id>webdavserver</id>
-      <url>dav:http://127.0.0.1:8800/sites/</url>
+      <url>dav:http://webdav:8800/sites/</url>
     </site>
   </distributionManagement>
 </project>
