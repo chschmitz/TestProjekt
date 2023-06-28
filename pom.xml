@@ -182,4 +182,12 @@
       <url>dav:http://webdav:8800/sites/</url>
     </site>
   </distributionManagement>
+   <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
