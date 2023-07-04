@@ -45,7 +45,7 @@ mvn cycles:cycles
  "{{Configuration}}" below.
 
 +---------------------
-mvn cycles:cycles -Dshorten=false -Dnameprefix=net.oneandone.maven.plugins.cycles
+mvn cycles:cycles -Dshorten=false -Dnameprefix=de.hstr.maven.plugins.cycles
 +---------------------
 
  Same as above, but the package names are spelled out fully and the packages are filtered so that
@@ -65,7 +65,7 @@ mvn cycles:cycles -Dshorten=false -Dnameprefix=net.oneandone.maven.plugins.cycle
   * <<<writeDotFiles>>>: Iff true, Graphviz files will be generated for each component (default: true)
   
   * <<<packageDepth>>>: Iff true, packages will be aggregated to this depth (e.g., if packageDepth == 2,
-    all packages <<<net.oneandone.*>>> will be counted as <<<net.oneandone>>>).
+    all packages <<<de.hstr.*>>> will be counted as <<<de.hstr>>>).
 
   * <<<includeTestClasses>>>: Iff true, the test classes (<<<target/test-classes>>>) will be considered,
     too (default:false)
@@ -73,7 +73,7 @@ mvn cycles:cycles -Dshorten=false -Dnameprefix=net.oneandone.maven.plugins.cycle
 {Configuration}
 
  In the Maven configuration <<<.m2/settings.xml>>> the Group ID of this plugin must be registered as a plugin group
- if the plugin is to be used with its short name (<<<cycles:cycles>>> instead of <<<net.oneandone.maven.plugins:cycles-mavenplugin:1.1.0:cycles>>>):
+ if the plugin is to be used with its short name (<<<cycles:cycles>>> instead of <<<de.hstr.maven.plugins:cycles-mavenplugin:1.1.0:cycles>>>):
  
 +-------------
 <settings>
