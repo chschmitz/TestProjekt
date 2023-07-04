@@ -23,8 +23,7 @@ import com.google.common.collect.ComparisonChain;
 import edu.uci.ics.jung.graph.DirectedGraph;
 
 /**
- * CAUTION: This is only for display purposes. It is not compatible with 
- * {@link WeightedEdge#hashCode()} and{@link WeightedEdge#equals()}.
+ * CAUTION: This is only for display purposes. 
  *  
  * @author chschmitz
  */

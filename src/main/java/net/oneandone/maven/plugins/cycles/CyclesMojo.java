@@ -33,8 +33,8 @@ import com.google.common.base.Strings;
  * 
  * @author chschmitz
  * 
- * @goal cycles
- * @requiresProject true
+ * (at) goal cycles
+ * (at) requiresProject true
  */
 public final class CyclesMojo extends AbstractMojo {
     /**

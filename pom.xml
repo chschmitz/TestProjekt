@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.oneandone.maven.plugins</groupId>
   <artifactId>cycles-maven-plugin</artifactId>
-  <packaging>maven-plugin</packaging>
+  <packaging>jar</packaging>
   <version>1.1.0-SNAPSHOT</version>
   <name>Maven Cycles Plugin</name>
   <description>
@@ -94,7 +94,7 @@
           <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
       </plugin>
-      <plugin>
+<!--      <plugin>
         <groupId>org.codehaus.plexus</groupId>
 	<artifactId>plexus-maven-plugin</artifactId>
 	<version>1.3.8</version>
@@ -105,7 +105,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
