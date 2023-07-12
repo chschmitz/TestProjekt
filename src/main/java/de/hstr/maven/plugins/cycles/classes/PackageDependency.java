@@ -23,9 +23,9 @@ import java.util.Set;
  * @author chschmitz
  */
 public final class PackageDependency {
-    private String from;
-    private String to;
     private Set<ClassDependency> classDependencies;
+    private String to;
+    private String from;
     
     /**
      * @param from the depending package
